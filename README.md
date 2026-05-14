@@ -1,5 +1,7 @@
 # Solo Spec Loop
 
+[![CI](https://github.com/agjs/solo-spec-loop/actions/workflows/ci.yml/badge.svg)](https://github.com/agjs/solo-spec-loop/actions/workflows/ci.yml)
+
 One file, one loop, one gate. Stops AI agents from sprinting ahead of you.
 
 ## What it is

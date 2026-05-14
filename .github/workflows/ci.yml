@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Compile gate
+        run: python3 -m py_compile hooks/solo_spec_gate.py
+
+      - name: Run gate tests
+        run: python3 tests/test_solo_spec_gate.py
+
+      - name: Validate plugin JSON
+        run: |
+          python3 -c "import json; json.load(open('.claude-plugin/plugin.json'))"
+          python3 -c "import json; json.load(open('.claude-plugin/marketplace.json'))"
+          python3 -c "import json; json.load(open('.cursor-plugin/plugin.json'))"
+          python3 -c "import json; json.load(open('hooks/hooks.json'))"
+          python3 -c "import json; json.load(open('hooks/hooks-cursor.json'))"
