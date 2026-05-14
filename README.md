@@ -18,38 +18,25 @@ You ask an AI for a small feature. You get a folder tree, an ADR forest, and 800
 
 Solo Spec Loop forces a checkpoint: the agent can't touch source until you've explicitly approved a small, vertical slice with a runnable acceptance check.
 
-## 30-second start (Claude Code)
-
-In Claude Code, run:
+## Claude Code
 
 ```text
 /plugin marketplace add agjs/solo-spec-loop
 /plugin install solo-spec-loop
+/reload-plugins
 ```
-
-`marketplace add` takes the **Git repo** (`owner/repo`). `install` uses the **plugin id** from the catalog (`solo-spec-loop` in `.claude-plugin/marketplace.json`). If you have several marketplaces, pin the source explicitly:
 
 ```text
-/plugin install solo-spec-loop@agjs-solo-spec-loop
+/solo-spec-loop:spec init
+/solo-spec-loop:spec explore <idea>
+/solo-spec-loop:spec slice
+/solo-spec-loop:spec approve
+/solo-spec-loop:spec build
 ```
 
-The part after `@` is **not** `agjs/solo-spec-loop`. It is the marketplace **`name`** field in this repo’s [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json) (`agjs-solo-spec-loop`, aligned with that repo path). That is what Claude Code’s docs call the marketplace identifier for installs. If you previously installed with `@agjs-plugins`, remove the old plugin and reinstall with the line above.
+Clash with another marketplace? `/plugin install solo-spec-loop@agjs-solo-spec-loop`
 
-Then `/reload-plugins` if prompted. **Claude Code namespaces plugin commands:** this repo’s plugin id is `solo-spec-loop` and the command file is `commands/spec.md`, so the slash command is **`/solo-spec-loop:spec`**, not bare `/spec`.
-
-```text
-/solo-spec-loop:spec init             # creates .specs/next.md
-/solo-spec-loop:spec explore <idea>  # discovery, no code
-/solo-spec-loop:spec slice            # shrink to one vertical cut
-/solo-spec-loop:spec approve         # only when you mean it
-/solo-spec-loop:spec build           # now the agent can write code
-```
-
-Type `/solo` and pick the entry whose description mentions *init, explore, slice…* if autocomplete hides the full name.
-
-**Want bare `/spec`?** Copy `commands/spec.md` into **this project’s** `.claude/commands/spec.md` (user / project scope). That registers `/spec` without the plugin prefix; keep the plugin for the hook and skill, or duplicate the hook in project settings if needed.
-
-The hook blocks source writes while the spec is `draft`. Edits to specs, tests, docs, and config stay allowed. Done.
+Want `/spec` instead? Copy `commands/spec.md` into this project’s `.claude/commands/spec.md`.
 
 ## Other tools
 
