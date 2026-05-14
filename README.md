@@ -24,10 +24,18 @@ In Claude Code, run:
 
 ```text
 /plugin marketplace add agjs/solo-spec-loop
-/plugin install solo-spec-loop@agjs-plugins
+/plugin install solo-spec-loop
 ```
 
-Then in any project, invoke the **spec** slash command from the plugin. **Claude Code namespaces plugin commands:** this repo’s plugin id is `solo-spec-loop` and the command file is `commands/spec.md`, so the slash command is **`/solo-spec-loop:spec`**, not bare `/spec`.
+`marketplace add` takes the **Git repo** (`owner/repo`). `install` uses the **plugin id** from the catalog (`solo-spec-loop` in `.claude-plugin/marketplace.json`). If you have several marketplaces, pin the source explicitly:
+
+```text
+/plugin install solo-spec-loop@agjs-solo-spec-loop
+```
+
+The part after `@` is **not** `agjs/solo-spec-loop`. It is the marketplace **`name`** field in this repo’s [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json) (`agjs-solo-spec-loop`, aligned with that repo path). That is what Claude Code’s docs call the marketplace identifier for installs. If you previously installed with `@agjs-plugins`, remove the old plugin and reinstall with the line above.
+
+Then `/reload-plugins` if prompted. **Claude Code namespaces plugin commands:** this repo’s plugin id is `solo-spec-loop` and the command file is `commands/spec.md`, so the slash command is **`/solo-spec-loop:spec`**, not bare `/spec`.
 
 ```text
 /solo-spec-loop:spec init             # creates .specs/next.md
