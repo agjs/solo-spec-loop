@@ -1,6 +1,6 @@
 {
-  "name": "solo-spec-loop",
-  "description": "Portable solo spec loop: agreed .specs/next.md contract + gate script; optional Claude/Cursor plugins.",
+  "name": "agjs-plugins",
+  "description": "agjs's plugin marketplace. Currently ships solo-spec-loop.",
   "owner": {
     "name": "agjs"
   },

@@ -20,11 +20,14 @@ Solo Spec Loop forces a checkpoint: the agent can't touch source until you've ex
 
 ## 30-second start (Claude Code)
 
-```bash
-claude plugin install agjs/solo-spec-loop
+In Claude Code, run:
+
+```text
+/plugin marketplace add agjs/solo-spec-loop
+/plugin install solo-spec-loop@agjs-plugins
 ```
 
-In any project:
+Then in any project:
 
 ```text
 /spec init             # creates .specs/next.md
