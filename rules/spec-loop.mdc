@@ -1,0 +1,50 @@
+---
+description: Tiny solo-founder rolling-wave spec loop for AI-assisted coding
+alwaysApply: true
+---
+
+# Solo Spec Loop
+
+For non-trivial changes, use one living micro-spec: `.specs/next.md`.
+
+This is not GitHub Spec Kit, enterprise SDD, or waterfall with better autocomplete. Do not create many files. Do not generate long Markdown. Do not produce process artifacts unless explicitly asked.
+
+If `.specs/next.md` does not exist in this project, the spec loop is not active. Either run `/spec init` to opt in, or proceed normally.
+
+When the loop is active, use it:
+
+1. Explore the idea conversationally.
+2. Pick one vertical slice.
+3. Write a tiny event sketch: Trigger -> change -> observable result.
+4. Define the verification contract, with a runnable acceptance check.
+5. Ask for approval.
+6. Build only that slice.
+7. Capture what reality taught us.
+
+Run `explore` and `slice` in Cursor Plan mode (or the equivalent read-only mode in your agent). The agent should not be writing source while the slice is still draft.
+
+Before implementation, `.specs/next.md` should briefly cover:
+
+- Purpose
+- One-session exit condition
+- Event sketch
+- Slice
+- Questions that matter
+- Assumptions
+- Verification contract (must remain true / must not happen / runnable acceptance check)
+- Not doing
+- Files likely touched
+
+Line budget: **target 90, soft 120, hard 140**. Past 120, shrink the slice instead of adding detail. The gate hard-blocks source writes past 140.
+
+Ask only questions that change behavior, UX, data, security, scope, or verification. For anything else, propose a default and move on.
+
+Do not edit implementation files until the spec frontmatter says:
+
+```yaml
+status: approved
+```
+
+During implementation, build only the approved slice. If a new ambiguity appears, stop and ask instead of silently broadening the task.
+
+If you find yourself going past ~3 revisions on the same slice, stop and ask the user to `/clear` and restart with only the spec and currently-edited files in context.
