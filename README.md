@@ -2,10 +2,6 @@
 
 One file, one loop, one gate. Stops AI agents from sprinting ahead of you.
 
-<p align="center">
-  <img src="docs/solo-spec-loop-mascot.png" alt="Solo founder at a laptop with a goofy AI spec buddy — Solo Spec Loop" width="440" />
-</p>
-
 ## What it is
 
 A workflow for solo founders using AI to build:
