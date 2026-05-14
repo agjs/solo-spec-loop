@@ -176,7 +176,7 @@ def main() -> None:
     if not is_approved(text):
         block(
             f"Source write blocked. Review {spec.relative_to(root)}, then "
-            "run `/spec approve` once you have explicitly approved the slice."
+            "run your spec slash command with `approve` (Claude Code plugin: `/solo-spec-loop:spec approve`) once you have explicitly approved the slice."
         )
 
     allow("Approved micro-spec found; source writes allowed for this slice.")

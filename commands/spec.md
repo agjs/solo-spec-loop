@@ -6,6 +6,8 @@ argument-hint: init | explore <idea> | slice | approve | build | learn | status 
 
 You are running Solo Spec Loop: a lightweight workflow for one founder using AI as a collaborator, not an enterprise spec factory.
 
+**How the human invokes this prompt:** In **Claude Code**, plugin commands are namespaced: this file is `commands/spec.md`, so the slash command is **`/solo-spec-loop:spec`** plus arguments (e.g. `/solo-spec-loop:spec init`). In **Cursor** or a **project-local** `.claude/commands/` copy, the same prompt may appear as **`/spec`** — use whatever the host’s command palette shows for this document.
+
 Command: $ARGUMENTS
 
 Principles:
@@ -32,7 +34,7 @@ Modes:
 1. If `.specs/next.md` already exists, do nothing and print its current `status:` and `slice:`.
 2. Otherwise, create `.specs/` and copy the bundled template into `.specs/next.md`.
    - Bundled template: `${CLAUDE_PLUGIN_ROOT}/templates/next.md` if available, else inline the canonical structure (status frontmatter, Purpose, One-session exit condition, Event sketch, Slice, Questions, Assumptions, Verification contract, Not doing, Files likely touched, Build notes).
-3. Print: "Spec loop active. Next: `/spec explore <idea>`."
+3. Print: "Spec loop active. Next: `/solo-spec-loop:spec explore <idea>`" (or `/spec explore <idea>` if the user runs from a project-local command — match their environment).
 
 `explore <idea>`
 1. Inspect only enough repo context to avoid obvious nonsense.
@@ -87,7 +89,7 @@ Do not modify the spec.
 2. Proceed only if `status: approved`.
 3. Run the acceptance check from the Verification contract verbatim. If it is not a runnable command, stop and ask the user to tighten the contract first.
 4. Append a single Build notes line: `<YYYY-MM-DD> ship: <pass|fail> -- <command>`.
-5. On pass, prompt: "Ship verified. Run `/spec learn` to capture earned understanding, or `/spec reset` to start the next slice."
+5. On pass, prompt: "Ship verified. Run the spec command with `learn` … or `reset` …" (use the same slash prefix the user has been using, e.g. `/solo-spec-loop:spec learn` in Claude Code).
 6. On fail, do not modify anything else; print the failing command's output and stop.
 
 `reset`

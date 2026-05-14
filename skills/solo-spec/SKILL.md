@@ -1,6 +1,6 @@
 ---
 name: solo-spec
-description: Use when the user asks to add a feature, build something new, or modify behavior in a project that has `.specs/next.md`. Drives the spec loop instead of jumping to implementation. Also use when the user mentions /spec, the spec loop, or asks to "spec out" or "slice" a piece of work.
+description: Use when the user asks to add a feature, build something new, or modify behavior in a project that has `.specs/next.md`. Drives the spec loop instead of jumping to implementation. Also use when the user mentions /spec, /solo-spec-loop:spec, the spec loop, or asks to "spec out" or "slice" a piece of work.
 ---
 
 # Solo Spec Loop
@@ -14,10 +14,10 @@ If `.specs/next.md` exists in the project root (or any parent up to the git root
 Activate this skill when:
 
 - The user asks to add a feature, build something new, or modify behavior.
-- The user mentions `/spec`, "spec out", "slice", "the spec loop", or "the next slice".
+- The user mentions `/spec`, `/solo-spec-loop:spec`, "spec out", "slice", "the spec loop", or "the next slice".
 - A `.specs/next.md` file exists somewhere in the cwd ancestry.
 
-If `.specs/next.md` does not exist, the project has not opted in. Suggest `/spec init` only if the user is starting non-trivial work; otherwise proceed normally.
+If `.specs/next.md` does not exist, the project has not opted in. Suggest the spec slash command with `init` (e.g. `/solo-spec-loop:spec init` in Claude Code) only if the user is starting non-trivial work; otherwise proceed normally.
 
 ## Loop
 
@@ -48,6 +48,10 @@ If the user wants any of those, they're picking a different framework (Spec Kit,
 
 ## Slash command
 
-`/spec init | explore <idea> | slice | approve | build | learn | status | ship | reset`
+Arguments are always: `init | explore <idea> | slice | approve | build | learn | status | ship | reset`.
 
-See the `spec` slash command for full mode semantics.
+**Claude Code (this plugin):** `/solo-spec-loop:spec <arguments>` — plugin id + command stem from `commands/spec.md`.
+
+**Cursor / project-local copy:** may appear as `/spec <arguments>`. Use the name your command palette shows.
+
+See `commands/spec.md` for full mode semantics.

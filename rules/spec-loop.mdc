@@ -9,7 +9,7 @@ For non-trivial changes, use one living micro-spec: `.specs/next.md`.
 
 This is not GitHub Spec Kit, enterprise SDD, or waterfall with better autocomplete. Do not create many files. Do not generate long Markdown. Do not produce process artifacts unless explicitly asked.
 
-If `.specs/next.md` does not exist in this project, the spec loop is not active. Either run `/spec init` to opt in, or proceed normally.
+If `.specs/next.md` does not exist in this project, the spec loop is not active. Either run the spec slash command with `init` to opt in (Claude Code with this plugin: `/solo-spec-loop:spec init`; Cursor or a project-local command may be `/spec init`), or proceed normally.
 
 When the loop is active, use it:
 

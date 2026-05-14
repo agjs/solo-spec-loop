@@ -27,15 +27,19 @@ In Claude Code, run:
 /plugin install solo-spec-loop@agjs-plugins
 ```
 
-Then in any project:
+Then in any project, invoke the **spec** slash command from the plugin. **Claude Code namespaces plugin commands:** this repo’s plugin id is `solo-spec-loop` and the command file is `commands/spec.md`, so the slash command is **`/solo-spec-loop:spec`**, not bare `/spec`.
 
 ```text
-/spec init             # creates .specs/next.md
-/spec explore <idea>   # discovery, no code
-/spec slice            # shrink to one vertical cut
-/spec approve          # only when you mean it
-/spec build            # now the agent can write code
+/solo-spec-loop:spec init             # creates .specs/next.md
+/solo-spec-loop:spec explore <idea>  # discovery, no code
+/solo-spec-loop:spec slice            # shrink to one vertical cut
+/solo-spec-loop:spec approve         # only when you mean it
+/solo-spec-loop:spec build           # now the agent can write code
 ```
+
+Type `/solo` and pick the entry whose description mentions *init, explore, slice…* if autocomplete hides the full name.
+
+**Want bare `/spec`?** Copy `commands/spec.md` into **this project’s** `.claude/commands/spec.md` (user / project scope). That registers `/spec` without the plugin prefix; keep the plugin for the hook and skill, or duplicate the hook in project settings if needed.
 
 The hook blocks source writes while the spec is `draft`. Edits to specs, tests, docs, and config stay allowed. Done.
 
@@ -50,7 +54,7 @@ Anything else (Codex, Gemini, Aider, Copilot, plain ChatGPT): copy `templates/ne
 ```text
 hooks/solo_spec_gate.py    the portable gate (~160 lines stdlib Python)
 templates/next.md          the spec template
-commands/spec.md           /spec slash command
+commands/spec.md           slash command (Claude Code: `/solo-spec-loop:spec …`)
 rules/spec-loop.mdc        Cursor always-apply rule
 skills/solo-spec/          Claude Code skill
 tests/                     stdlib-only tests for the gate
