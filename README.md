@@ -2,6 +2,10 @@
 
 One file, one loop, one gate. Stops AI agents from sprinting ahead of you.
 
+<p align="center">
+  <img src="docs/solo-spec-loop-mascot.png" alt="Solo founder at a laptop with a goofy AI spec buddy — Solo Spec Loop" width="440" />
+</p>
+
 ## What it is
 
 A workflow for solo founders using AI to build:
@@ -64,7 +68,7 @@ python3 tests/test_solo_spec_gate.py
 
 ## What this is not
 
-Not Spec Kit. Not GSD. Not OpenSpec. No constitution, no per-feature folders, no multi-agent orchestration. If you want any of that, pick one of those.
+Not [Spec Kit](https://github.com/github/spec-kit). Not [GSD](https://github.com/gsd-build/get-shit-done). Not [OpenSpec](https://github.com/Fission-AI/OpenSpec). No constitution, no per-feature folders, no multi-agent orchestration. If you want any of that, pick one of those.
 
 ## License
 
